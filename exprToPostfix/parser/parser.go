@@ -2,7 +2,10 @@ package parser
 
 import (
 	"fmt"
+	"shared/stack"
 	"strings"
+
+	"exprToPostfix/lexer"
 )
 
 type Parser struct {
@@ -66,7 +69,7 @@ func (p *Parser) ToPoliz(tokens []lexer.Token) ([]string, error) {
 				if top == "(" {
 					break
 				}
-				topPriority := p.getPrioruty(top, false)
+				topPriority := p.getPriority(top, false)
 				if topPriority >= priority {
 					opStack.Pop()
 					output = append(output, top)

@@ -4,14 +4,22 @@ package main
 #include <stdlib.h>
 */
 import "C"
-var converter = Converter.NewConverter()
 
+import (
+	"unsafe"
+
+	"exprToPostfix/converter"
+)
+
+var conv = converter.NewConverter()
+
+// using this lib you need to check "ERROR: " prefix
+//
 //export ToPoliz
-//using this lib you need to check "ERROR: " prefix
 func ToPoliz(expr *C.char) *C.char {
-	go Expr := C.GoString(expr)
+	goExpr := C.GoString(expr)
 
-	polizStr, err := converter.ToPolizString(goExpr)
+	polizStr, err := conv.ToPoliz(goExpr)
 	if err != nil {
 		errMsg := "ERROR: " + err.Error()
 		return C.CString(errMsg)

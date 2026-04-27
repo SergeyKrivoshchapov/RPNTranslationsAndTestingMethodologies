@@ -61,7 +61,7 @@ func (l *Lexer) Tokenize() ([]Token, error) {
 	return tokens, nil
 }
 
-func (l *Lexer) isUnaryOp(token []Token, currentPos int) bool {
+func (l *Lexer) isUnaryOp(tokens []Token, currentPos int) bool {
 	if len(tokens) == 0 {
 		return true
 	}

@@ -1,4 +1,4 @@
-module exprToPostfix
+module postfixCalculation
 
 go 1.21
 

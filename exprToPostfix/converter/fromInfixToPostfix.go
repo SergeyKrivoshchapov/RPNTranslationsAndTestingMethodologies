@@ -1,13 +1,16 @@
 package converter
 
+import (
+	"exprToPostfix/lexer"
+	"exprToPostfix/parser"
+)
+
 type Converter struct {
-	lexer  *lexer.Lexer
 	parser *parser.Parser
 }
 
 func NewConverter() *Converter {
 	return &Converter{
-		lexer:  lexer.NewLexer(),
 		parser: parser.NewParser(),
 	}
 }
