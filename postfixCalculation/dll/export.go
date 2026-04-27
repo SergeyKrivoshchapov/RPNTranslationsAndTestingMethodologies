@@ -7,8 +7,9 @@ import "C"
 
 import (
 	"fmt"
-	"postfixCalculation/calculator"
 	"unsafe"
+
+	"postfixCalculation/calculator"
 )
 
 var calc = calculator.NewPostfixCalculator()
@@ -31,3 +32,5 @@ func FreeString(str *C.char) {
 		C.free(unsafe.Pointer(str))
 	}
 }
+
+func main() {}
