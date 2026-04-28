@@ -34,6 +34,7 @@ public static class TestSuite
         new() { Id="T1-BV2", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="7", Path="-", Expected="7" },
         new() { Id="T1-BV3", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input=")", Path="-", Expected="ERROR: несогласованные скобки" },
         new() { Id="T1-BV4", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="1+2*3", Path="-", Expected="1 2 3 * +" },
+        new() { Id="T1-BV5", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="2^3^2", Path="-", Expected="2 3 2 ^ ^" }, // БАГ: левоассоциативность степени
 
         new() { Id="T1-CE1", Task="Задание 1", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="1+2*3", Path="-", Expected="1 2 3 * +" },
         new() { Id="T1-CE2", Task="Задание 1", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="-2+3", Path="-", Expected="u- 2 3 +" },
@@ -54,7 +55,7 @@ public static class TestSuite
 
         new() { Id="T1-MCC1", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="-2", Path="A-B-L-M(Да)-N...T", Expected="u- 2" },
         new() { Id="T1-MCC2", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="2-1", Path="A-B-D-E-F-B-L-M(Нет)-O-P...T", Expected="2 1 -" },
-        new() { Id="T1-MCC3", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="+2", Path="A-B-L-M(Нет)-O-P-B-D-E-F...T", Expected="2 +" },
+        new() { Id="T1-MCC3", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="+2", Path="A-B-L-M(Нет)-O-P-B-D-E-F...T", Expected="2" }, // БАГ: Унарный плюс обрабатывается как бинарный
         new() { Id="T1-MCC4", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="2+1", Path="A-B-D-E-F-B-L-M(Нет)-O-P...T", Expected="2 1 +" },
 
 
@@ -71,7 +72,7 @@ public static class TestSuite
         new() { Id="T2-EC6", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 3 ?", Path="-", Expected="ERROR: Неизвестный оператор: ?" },
         new() { Id="T2-EC7", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 -1 ^", Path="-", Expected="ERROR: Отрицательная степень не поддерживается" },
 
-        new() { Id="T2-BV1", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="", Path="-", Expected="0" },
+        new() { Id="T2-BV1", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="", Path="-", Expected="ERROR: Пустое выражение" }, // БАГ: Программа возвращает 0
         new() { Id="T2-BV2", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="7", Path="-", Expected="7" },
         new() { Id="T2-BV3", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="1 1 /", Path="-", Expected="1" },
         new() { Id="T2-BV4", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="1 0 /", Path="-", Expected="ERROR: Деление на ноль" },
@@ -82,7 +83,7 @@ public static class TestSuite
         new() { Id="T2-CE4", Task="Задание 2", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="5 0 /", Path="-", Expected="ERROR: Деление на ноль" },
 
         new() { Id="T2-EG1", Task="Задание 2", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input=" 12   3  + ", Path="-", Expected="15" },
-        new() { Id="T2-EG2", Task="Задание 2", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="2 3", Path="-", Expected="3" },
+        new() { Id="T2-EG2", Task="Задание 2", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="2 3", Path="-", Expected="ERROR: Слишком много операндов" }, // БАГ: Программа возвращает 3
         new() { Id="T2-EG3", Task="Задание 2", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="10 2 mod", Path="-", Expected="ERROR: Неизвестный оператор: mod" },
 
         // --- Белый ящик ---
@@ -93,7 +94,7 @@ public static class TestSuite
         new() { Id="T2-WB5", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="4 0 /", Path="A-B-C-D-E-F-G...H-K-L-M-Q-X3", Expected="ERROR: Деление на ноль" },
         new() { Id="T2-WB6", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="2 -2 ^", Path="A-B-C-D-E-F-G...H-K-L-M-S-X4", Expected="ERROR: Отрицательная степень не поддерживается" },
         new() { Id="T2-WB7", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="2 3 @", Path="A-B-C-D-E-F-G...H-K-L-M-X5", Expected="ERROR: Неизвестный оператор: @" },
-        new() { Id="T2-WB8", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="", Path="A-B-C-Z0", Expected="0" },
+        new() { Id="T2-WB8", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="", Path="A-B-C-Z0", Expected="ERROR: Пустое выражение" }, // БАГ
     };
 
     public static List<TestResult> RunAll()
