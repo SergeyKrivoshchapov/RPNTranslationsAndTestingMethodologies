@@ -22,7 +22,7 @@ public static class NativeMethods
         IntPtr p = ToPoliz(expr ?? string.Empty);
         if (p == IntPtr.Zero) return string.Empty;
         try { return Marshal.PtrToStringUTF8(p) ?? string.Empty; }
-        finally { FreeString(p); } // есть экспорт в exprToPostfix
+        finally { FreeString(p); }
     }
 
     public static string CalculatePostfix(string expr)
@@ -30,8 +30,6 @@ public static class NativeMethods
         IntPtr p = EvaluatePostfix(expr ?? string.Empty);
         if (p == IntPtr.Zero) return string.Empty;
 
-        // В postfix DLL FreeString не экспортирован в вашем коде.
-        // Поэтому только чтение строки.
         return Marshal.PtrToStringUTF8(p) ?? string.Empty;
     }
 }
