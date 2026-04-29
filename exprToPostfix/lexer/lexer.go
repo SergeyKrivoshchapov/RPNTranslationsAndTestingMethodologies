@@ -55,7 +55,9 @@ func (l *Lexer) Tokenize() ([]Token, error) {
 		if err != nil {
 			return nil, err
 		}
-		tokens = append(tokens, token)
+		if token.Value != "" {
+			tokens = append(tokens, token)
+		}
 	}
 	return tokens, nil
 }
@@ -77,6 +79,9 @@ func (l *Lexer) makeToken(ch rune, tokens []Token, pos int) (Token, error) {
 	case '+', '-', '*', '/', '^':
 		if ch == '-' && l.isUnaryOp(tokens, pos) {
 			return Token{Type: TokenOperator, Value: "u-"}, nil
+		}
+		if ch == '+' && l.isUnaryOp(tokens, pos) {
+			return Token{Type: TokenOperator, Value: ""}, nil
 		}
 		return Token{Type: TokenOperator, Value: string(ch)}, nil
 	default:

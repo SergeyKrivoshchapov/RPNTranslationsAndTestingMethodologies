@@ -56,6 +56,10 @@ func (c *PostfixCalculator) Calculate(postfixExpr string) (int, error) {
 		valStack.Push(result)
 	}
 
+	if valStack.Size() != 1 {
+		return 0, fmt.Errorf("Слишком много операндов")
+	}
+
 	result, _ := valStack.Pop()
 	return result, nil
 }
