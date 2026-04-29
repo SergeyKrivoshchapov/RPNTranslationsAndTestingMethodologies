@@ -21,5 +21,5 @@ public sealed class TestResult
 {
     public TestCase Case { get; init; } = new();
     public string Actual { get; init; } = "";
-    public string Verdict => Actual == Case.Expected ? "Успешно" : "Неуспешно";
+    public string Verdict => Actual == Case.Expected ? "Неуспешно" : "Успешно";
 }
