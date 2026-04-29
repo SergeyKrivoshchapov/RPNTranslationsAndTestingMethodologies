@@ -17,7 +17,6 @@ const (
 	TokenOperator
 	TokenLeftParen
 	TokenRightParen
-	TokenUnaryMinus
 	TokenUnknown
 )
 
@@ -77,7 +76,7 @@ func (l *Lexer) makeToken(ch rune, tokens []Token, pos int) (Token, error) {
 		return Token{Type: TokenRightParen, Value: ")"}, nil
 	case '+', '-', '*', '/', '^':
 		if ch == '-' && l.isUnaryOp(tokens, pos) {
-			return Token{Type: TokenUnaryMinus, Value: "u-"}, nil
+			return Token{Type: TokenOperator, Value: "u-"}, nil
 		}
 		return Token{Type: TokenOperator, Value: string(ch)}, nil
 	default:

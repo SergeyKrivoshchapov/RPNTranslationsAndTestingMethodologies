@@ -57,12 +57,10 @@ func (p *Parser) ToPoliz(tokens []lexer.Token) ([]string, error) {
 				output = append(output, top)
 			}
 
-		case lexer.TokenUnaryMinus:
-			output = append(output, "u-")
-
 		case lexer.TokenOperator:
 			op := token.Value
-			priority := p.getPriority(op, false)
+			isUnary := (op == "u-")
+			priority := p.getPriority(op, isUnary)
 
 			for !opStack.IsEmpty() {
 				top, _ := opStack.Peek()
