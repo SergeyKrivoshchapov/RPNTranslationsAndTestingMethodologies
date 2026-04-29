@@ -16,98 +16,112 @@ public static class TestSuite
     }
 
     public static List<TestCase> BuildAll() => new()
-    {
-        // =========================================================================
-        // ЗАДАНИЕ 1: ToPoliz (Перевод в ПОЛИЗ)
-        // =========================================================================
-    
-        // --- Чёрный ящик ---
-        new() { Id="T1-EC0", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="", Path="-", Expected="ERROR: Пустое выражение" },
-        new() { Id="T1-EC1", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2+3", Path="-", Expected="2 3 +" },
-        new() { Id="T1-EC2", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="(2+3)*4", Path="-", Expected="2 3 + 4 *" },
-        new() { Id="T1-EC3", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="-2+3", Path="-", Expected="u- 2 3 +" },
-        new() { Id="T1-EC4", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="(-2)+3", Path="-", Expected="u- 2 3 +" },
-        new() { Id="T1-EC5", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2+a", Path="-", Expected="ERROR: Не известный символ a" },
-        new() { Id="T1-EC6", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="1+2)", Path="-", Expected="ERROR: несогласованные скобки" },
-        new() { Id="T1-EC7", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="(1+2", Path="-", Expected="ERROR: несогласованные скобки" },
-        new() { Id="T1-EC8", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="123+456", Path="-", Expected="123 456 +" },
+{
+    // =========================================================================
+    // ЗАДАНИЕ 1: ToPoliz (Перевод в ПОЛИЗ)
+    // =========================================================================
 
-        new() { Id="T1-BV1", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="", Path="-", Expected="ERROR: Пустое выражение" },
-        new() { Id="T1-BV2", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="7", Path="-", Expected="7" },
-        new() { Id="T1-BV3", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input=")", Path="-", Expected="ERROR: несогласованные скобки" },
-        new() { Id="T1-BV4", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="1+2*3", Path="-", Expected="1 2 3 * +" },
-        new() { Id="T1-BV5", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="2^3^2", Path="-", Expected="2 3 2 ^ ^" },
-        new() { Id="T1-BV6", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="(((1+2)))", Path="-", Expected="1 2 +" },
+    // --- Чёрный ящик ---
+    new() { Id="T1-EC0", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="", Path="-", Expected="ERROR: пустое выражение" },
+    new() { Id="T1-EC1", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2+3", Path="-", Expected="2 3 +" },
+    new() { Id="T1-EC2", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="(2+3)*4", Path="-", Expected="2 3 + 4 *" },
+    new() { Id="T1-EC3", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="-2+3", Path="-", Expected="2 3 + u-" },
+    new() { Id="T1-EC4", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="(-2)+3", Path="-", Expected="2 u- 3 +" },
+    new() { Id="T1-EC5", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2+a", Path="-", Expected="ERROR: Не известный символ a" },
+    new() { Id="T1-EC6", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="1+2)", Path="-", Expected="ERROR: несогласованные скобки" },
+    new() { Id="T1-EC7", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="(1+2", Path="-", Expected="ERROR: несогласованные скобки" },
+    new() { Id="T1-EC8", Task="Задание 1", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="123+456", Path="-", Expected="123 456 +" },
 
-        new() { Id="T1-CE1", Task="Задание 1", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="1+2*3", Path="-", Expected="1 2 3 * +" },
-        new() { Id="T1-CE2", Task="Задание 1", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="-2+3", Path="-", Expected="u- 2 3 +" },
-        new() { Id="T1-CE3", Task="Задание 1", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="2+a", Path="-", Expected="ERROR: Не известный символ a" },
-        new() { Id="T1-CE4", Task="Задание 1", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="(1+2", Path="-", Expected="ERROR: несогласованные скобки" },
+    new() { Id="T1-BV1", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="", Path="-", Expected="ERROR: пустое выражение" },
+    new() { Id="T1-BV2", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="7", Path="-", Expected="7" },
+    new() { Id="T1-BV3", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="1/1", Path="-", Expected="1 1 /" },
+    new() { Id="T1-BV4", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="1/0", Path="-", Expected="1 0 /" },
+    new() { Id="T1-BV5", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="2^0", Path="-", Expected="2 0 ^" },
+    new() { Id="T1-BV6", Task="Задание 1", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="2^3^2", Path="-", Expected="2 3 2 ^ ^" },
 
-        new() { Id="T1-EG1", Task="Задание 1", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="  12   +  3 ", Path="-", Expected="12 3 +" },
-        new() { Id="T1-EG2", Task="Задание 1", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="--2", Path="-", Expected="u- u- 2" },
-        new() { Id="T1-EG3", Task="Задание 1", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="2+3)", Path="-", Expected="ERROR: несогласованные скобки" },
-        new() { Id="T1-EG4", Task="Задание 1", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="+5", Path="-", Expected="5" },
+    new() { Id="T1-CE1", Task="Задание 1", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="1+2*3", Path="-", Expected="1 2 3 * +" },
+    new() { Id="T1-CE2", Task="Задание 1", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="-2+3", Path="-", Expected="2 3 + u-" },
+    new() { Id="T1-CE3", Task="Задание 1", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="2+a", Path="-", Expected="ERROR: Не известный символ a" },
+    new() { Id="T1-CE4", Task="Задание 1", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="(1+2", Path="-", Expected="ERROR: несогласованные скобки" },
 
-        // --- Белый ящик ---
-        new() { Id="T1-WB0", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="", Path="A-EMPTY-X0", Expected="ERROR: Пустое выражение" },
-        new() { Id="T1-WB1", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="1+2", Path="A-EMPTY-B-D-E-F-B-L-M-O-P-B-D-E-F-B-Q-R-S-T", Expected="1 2 +" },
-        new() { Id="T1-WB2", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="(1+2)*3", Path="A-EMPTY-B-G-H-B-D-E-F-B-L-M-O-P-B...T", Expected="1 2 + 3 *" },
-        new() { Id="T1-WB3", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="-2+3", Path="A-EMPTY-B-L-M-N-B-D-E-F...T", Expected="u- 2 3 +" },
-        new() { Id="T1-WB4", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="2+a", Path="A-EMPTY-B-D-E-F-B-L-X2", Expected="ERROR: Не известный символ a" },
-        new() { Id="T1-WB5", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="1+2)", Path="A-EMPTY-B-D-E-F-B-L-M-O-P-B-D-E-F-B-I-J-K-X1", Expected="ERROR: несогласованные скобки" },
-        new() { Id="T1-WB6", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="(1+2", Path="A-EMPTY-B-G-H-B-D...Q-R-S-X3", Expected="ERROR: несогласованные скобки" },
-        new() { Id="T1-WB7", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="123+456", Path="A-EMPTY-B-D-E-F-B-L-M-O-P-B-D-E-F-B-Q-R-S-T", Expected="123 456 +" },
+    new() { Id="T1-EG1", Task="Задание 1", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="  12   +  3 ", Path="-", Expected="12 3 +" },
+    new() { Id="T1-EG2", Task="Задание 1", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="--2", Path="-", Expected="2 u- u-" },
+    new() { Id="T1-EG3", Task="Задание 1", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="2+3)", Path="-", Expected="ERROR: несогласованные скобки" },
+    new() { Id="T1-EG4", Task="Задание 1", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="+5", Path="-", Expected="5" },
 
-        new() { Id="T1-MCC1", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="-2", Path="A-EMPTY-B-L-M(Да)-N...T", Expected="u- 2" },
-        new() { Id="T1-MCC2", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="2-1", Path="A-EMPTY-B-D-E-F-B-L-M(Нет)-O-P...T", Expected="2 1 -" },
-        new() { Id="T1-MCC3", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="+2", Path="A-EMPTY-B-L-M(Нет)-O-P-B-D-E-F...T", Expected="2" },
-        new() { Id="T1-MCC4", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="2+1", Path="A-EMPTY-B-D-E-F-B-L-M(Нет)-O-P...T", Expected="2 1 +" },
+    // --- Белый ящик ---
+    new() { Id="T1-WB0", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="", Path="A-EMPTY-X0", Expected="ERROR: пустое выражение" },
+    new() { Id="T1-WB1", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="1+2", Path="A-EMPTY-B-D-E-F-B-L-M-O-P-B-D-E-F-B-Q-R-S-T", Expected="1 2 +" },
+    new() { Id="T1-WB2", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="(1+2)*3", Path="A-EMPTY-B-G-H-B-D-E-F-B-L-M-O-P-B...T", Expected="1 2 + 3 *" },
+    new() { Id="T1-WB3", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="-2+3", Path="A-EMPTY-B-L-M-N-B-D-E-F...T", Expected="2 3 + u-" },
+    new() { Id="T1-WB4", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="2+a", Path="A-EMPTY-B-D-E-F-B-L-X2", Expected="ERROR: Не известный символ a" },
+    new() { Id="T1-WB5", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="1+2)", Path="A-EMPTY-B-D-E-F-B-L-M-O-P-B-D-E-F-B-I-J-K-X1", Expected="ERROR: несогласованные скобки" },
+    new() { Id="T1-WB6", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="(1+2", Path="A-EMPTY-B-G-H-B-D...Q-R-S-X3", Expected="ERROR: несогласованные скобки" },
+    new() { Id="T1-WB7", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="123+456", Path="A-EMPTY-B-D-E-F-B-L-M-O-P-B-D-E-F-B-Q-R-S-T", Expected="123 456 +" },
+    // Доп. тесты для полного покрытия:
+    new() { Id="T1-WB8", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="  12   +  3 ", Path="A-EMPTY-B-C(Да)-B-D-E-F-B-L-M-O-P-B-D-E-F-B-Q-R-S-T", Expected="12 3 +" },
+    new() { Id="T1-WB9", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input=")", Path="A-EMPTY-B-C-D(Нет)-G(Нет)-I(Да)-J-K(Нет)-X1", Expected="ERROR: несогласованные скобки" },
+    new() { Id="T1-WB10",Task="Задание 1", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="--2", Path="A-EMPTY-B-L-M(Да)-N-B-L-M(Да)-N-B-D-E-F...T", Expected="2 u- u-" },
 
-        // =========================================================================
-        // ЗАДАНИЕ 2: EvaluatePostfix (Вычисление ПОЛИЗ)
-        // =========================================================================
-    
-        // --- Чёрный ящик ---
-        new() { Id="T2-EC0", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="", Path="-", Expected="ERROR: Пустое выражение" },
-        new() { Id="T2-EC1", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 3 +", Path="-", Expected="5" },
-        new() { Id="T2-EC2", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 u-", Path="-", Expected="-2" },
-        new() { Id="T2-EC3", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 +", Path="-", Expected="ERROR: Недостаточно операндов для оператора +" },
-        new() { Id="T2-EC4", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="u-", Path="-", Expected="ERROR: Недостаточно операндов для унарного минуса" },
-        new() { Id="T2-EC5", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="5 0 /", Path="-", Expected="ERROR: Деление на ноль" },
-        new() { Id="T2-EC6", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 3 ?", Path="-", Expected="ERROR: Неизвестный оператор: ?" },
-        new() { Id="T2-EC7", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 -1 ^", Path="-", Expected="ERROR: Отрицательная степень не поддерживается" },
-        new() { Id="T2-EC8", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 0 ^", Path="-", Expected="1" },
-        new() { Id="T2-EC9", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 3 4 +", Path="-", Expected="ERROR: Слишком много операндов" },
+    new() { Id="T1-MCC1", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="-2", Path="A-EMPTY-B-L-M(Да)-N...T", Expected="2 u-" },
+    new() { Id="T1-MCC2", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="2-1", Path="A-EMPTY-B-D-E-F-B-L-M(Нет)-O-P...T", Expected="2 1 -" },
+    new() { Id="T1-MCC3", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="+2", Path="A-EMPTY-B-L-M(Нет)-O-P-B-D-E-F...T", Expected="2" },
+    new() { Id="T1-MCC4", Task="Задание 1", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="2+1", Path="A-EMPTY-B-D-E-F-B-L-M(Нет)-O-P...T", Expected="2 1 +" },
 
-        new() { Id="T2-BV1", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="", Path="-", Expected="ERROR: Пустое выражение" },
-        new() { Id="T2-BV2", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="7", Path="-", Expected="7" },
-        new() { Id="T2-BV3", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="1 1 /", Path="-", Expected="1" },
-        new() { Id="T2-BV4", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="1 0 /", Path="-", Expected="ERROR: Деление на ноль" },
-        new() { Id="T2-BV5", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="2 0 ^", Path="-", Expected="1" },
+    // =========================================================================
+    // ЗАДАНИЕ 2: EvaluatePostfix (Вычисление ПОЛИЗ)
+    // =========================================================================
 
-        new() { Id="T2-CE1", Task="Задание 2", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="3 u-", Path="-", Expected="-3" },
-        new() { Id="T2-CE2", Task="Задание 2", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="2 3 +", Path="-", Expected="5" },
-        new() { Id="T2-CE3", Task="Задание 2", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="2 +", Path="-", Expected="ERROR: Недостаточно операндов для оператора +" },
-        new() { Id="T2-CE4", Task="Задание 2", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="5 0 /", Path="-", Expected="ERROR: Деление на ноль" },
+    new() { Id="T2-EC0", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="", Path="-", Expected="ERROR: пустое выражение" },
+    new() { Id="T2-EC1", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 3 +", Path="-", Expected="5" },
+    new() { Id="T2-EC2", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 u-", Path="-", Expected="-2" },
+    new() { Id="T2-EC3", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 +", Path="-", Expected="ERROR: Недостаточно операндов для оператора +" },
+    new() { Id="T2-EC4", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="u-", Path="-", Expected="ERROR: Недостаточно операндов для унарного минуса" },
+    new() { Id="T2-EC5", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="5 0 /", Path="-", Expected="ERROR: Деление на ноль" },
+    new() { Id="T2-EC6", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 3 ?", Path="-", Expected="ERROR: Неизвестный оператор: ?" },
+    new() { Id="T2-EC7", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 -1 ^", Path="-", Expected="ERROR: Отрицательная степень не поддерживается" },
+    new() { Id="T2-EC8", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 0 ^", Path="-", Expected="1" },
+    new() { Id="T2-EC9", Task="Задание 2", BoxType=TestType.BlackBox, Method="Разбиение на классы эквивалентности", Input="2 3 4 +", Path="-", Expected="ERROR: Слишком много операндов" },
 
-        new() { Id="T2-EG1", Task="Задание 2", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input=" 12   3  + ", Path="-", Expected="15" },
-        new() { Id="T2-EG2", Task="Задание 2", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="2 3", Path="-", Expected="ERROR: Слишком много операндов" },
-        new() { Id="T2-EG3", Task="Задание 2", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="10 2 mod", Path="-", Expected="ERROR: Неизвестный оператор: mod" },
-        new() { Id="T2-EG4", Task="Задание 2", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="2 3 4 +", Path="-", Expected="ERROR: Слишком много операндов" },
+    new() { Id="T2-BV1", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="", Path="-", Expected="ERROR: пустое выражение" },
+    new() { Id="T2-BV2", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="7", Path="-", Expected="7" },
+    new() { Id="T2-BV3", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="1 1 /", Path="-", Expected="1" },
+    new() { Id="T2-BV4", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="1 0 /", Path="-", Expected="ERROR: Деление на ноль" },
+    new() { Id="T2-BV5", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="2 0 ^", Path="-", Expected="1" },
+    new() { Id="T2-BV6", Task="Задание 2", BoxType=TestType.BlackBox, Method="Анализ граничных значений", Input="2 3 2 ^ ^", Path="-", Expected="512" },
 
-        // --- Белый ящик ---
-        new() { Id="T2-WB0", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="", Path="A-EMPTY-X0", Expected="ERROR: Пустое выражение" },
-        new() { Id="T2-WB1", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="9", Path="A-EMPTY-B-C-D-E-F-G-E-Z1", Expected="9" },
-        new() { Id="T2-WB2", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="3 u-", Path="A-EMPTY-B-C-D-E-F-G-E-F-H-I-J-E-Z1", Expected="-3" },
-        new() { Id="T2-WB3", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="u-", Path="A-EMPTY-B-C-D-E-F-H-I-X1", Expected="ERROR: Недостаточно операндов для унарного минуса" },
-        new() { Id="T2-WB4", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="+", Path="A-EMPTY-B-C-D-E-F-H-K-X2", Expected="ERROR: Недостаточно операндов для оператора +" },
-        new() { Id="T2-WB5", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="4 0 /", Path="A-EMPTY-B-C-D-E-F-G...H-K-L-M-Q-X3", Expected="ERROR: Деление на ноль" },
-        new() { Id="T2-WB6", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="2 -2 ^", Path="A-EMPTY-B-C-D-E-F-G...H-K-L-M-S-X4", Expected="ERROR: Отрицательная степень не поддерживается" },
-        new() { Id="T2-WB7", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="2 3 @", Path="A-EMPTY-B-C-D-E-F-G...H-K-L-M-X5", Expected="ERROR: Неизвестный оператор: @" },
-        new() { Id="T2-WB9", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="2 0 ^", Path="A-EMPTY-B-C-D-E-F-G...H-K-L-M-S(б<0? Нет)-T-U-E-Z1", Expected="1" },
-        new() { Id="T2-WB10",Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="2 3 4 +", Path="A-EMPTY-B-C-D-E-F-G-E-F-G-E-F-H-K-L-M(Условие '+'?)-N-U-E-Z1-X6(лишние операнды)", Expected="ERROR: Слишком много операндов" }
-    };
+    new() { Id="T2-CE1", Task="Задание 2", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="3 u-", Path="-", Expected="-3" },
+    new() { Id="T2-CE2", Task="Задание 2", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="2 3 +", Path="-", Expected="5" },
+    new() { Id="T2-CE3", Task="Задание 2", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="2 +", Path="-", Expected="ERROR: Недостаточно операндов для оператора +" },
+    new() { Id="T2-CE4", Task="Задание 2", BoxType=TestType.BlackBox, Method="Причинно-следственные связи", Input="5 0 /", Path="-", Expected="ERROR: Деление на ноль" },
+
+    new() { Id="T2-EG1", Task="Задание 2", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input=" 12   3  + ", Path="-", Expected="15" },
+    new() { Id="T2-EG2", Task="Задание 2", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="2 3", Path="-", Expected="ERROR: Слишком много операндов" },
+    new() { Id="T2-EG3", Task="Задание 2", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="10 2 mod", Path="-", Expected="ERROR: Неизвестный оператор: mod" },
+    new() { Id="T2-EG4", Task="Задание 2", BoxType=TestType.BlackBox, Method="Предположение об ошибке", Input="2 3 4 +", Path="-", Expected="ERROR: Слишком много операндов" },
+
+    // --- Белый ящик ---
+    new() { Id="T2-WB0", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="", Path="A-EMPTY-X0", Expected="ERROR: пустое выражение" },
+    new() { Id="T2-WB1", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="9", Path="A-EMPTY-B-C-D-E-F-G-E-Z1", Expected="9" },
+    new() { Id="T2-WB2", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="3 u-", Path="A-EMPTY-B-C-D-E-F-G-E-F-H-I-J-E-Z1", Expected="-3" },
+    new() { Id="T2-WB3", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="u-", Path="A-EMPTY-B-C-D-E-F-H-I-X1", Expected="ERROR: Недостаточно операндов для унарного минуса" },
+    new() { Id="T2-WB4", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="+", Path="A-EMPTY-B-C-D-E-F-H-K-X2", Expected="ERROR: Недостаточно операндов для оператора +" },
+    new() { Id="T2-WB5", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="4 0 /", Path="A-EMPTY-B-C-D-E-F-G...H-K-L-M-Q-X3", Expected="ERROR: Деление на ноль" },
+    new() { Id="T2-WB6", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="2 -2 ^", Path="A-EMPTY-B-C-D-E-F-G...H-K-L-M-S-X4", Expected="ERROR: Отрицательная степень не поддерживается" },
+    new() { Id="T2-WB7", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="2 3 @", Path="A-EMPTY-B-C-D-E-F-G...H-K-L-M-X5", Expected="ERROR: Неизвестный оператор: @" },
+    new() { Id="T2-WB9", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="2 0 ^", Path="A-EMPTY-B-C-D-E-F-G...H-K-L-M-S(б<0? Нет)-T-U-E-Z1", Expected="1" },
+    new() { Id="T2-WB10",Task="Задание 2", BoxType=TestType.WhiteBox, Method="Структурное покрытие (Методы 1-4)", Input="2 3 4 +", Path="A-EMPTY-B-C-D-E-F-G-E-F-G-E-F-H-K-L-M(Условие '+'?)-N-U-E-Z1-X6(лишние операнды)", Expected="ERROR: Слишком много операндов" },
+
+    // --- Комбинаторное покрытие для Задания 2 ---
+    new() { Id="T2-MCC1", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="2 u-", Path="A-EMPTY-B-C-D-E-F-G-E-F-H-I(Да)-J-E-Z1", Expected="-2" },
+    new() { Id="T2-MCC2", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="u-", Path="A-EMPTY-B-C-D-E-F-H-I(Нет)-X1", Expected="ERROR: Недостаточно операндов для унарного минуса" },
+    new() { Id="T2-MCC3", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="2 3 +", Path="A-EMPTY-B-C-D-E-F-G...H-K(Да)-L-M(+)-N-U-E-Z1", Expected="5" },
+    new() { Id="T2-MCC4", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="2 +", Path="A-EMPTY-B-C-D-E-F-G...H-K(Нет)-X2", Expected="ERROR: Недостаточно операндов для оператора +" },
+    new() { Id="T2-MCC5", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="5 0 /", Path="A-EMPTY-B-C-D-E-F-G...H-K(Да)-L-M(/)-Q(Да)-X3", Expected="ERROR: Деление на ноль" },
+    new() { Id="T2-MCC6", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="2 -2 ^", Path="A-EMPTY-B-C-D-E-F-G...H-K(Да)-L-M(^)-S(Да)-X4", Expected="ERROR: Отрицательная степень не поддерживается" },
+    new() { Id="T2-MCC7", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="2 0 ^", Path="A-EMPTY-B-C-D-E-F-G...H-K(Да)-L-M(^)-S(Нет)-T-U-E-Z1", Expected="1" },
+    new() { Id="T2-MCC8", Task="Задание 2", BoxType=TestType.WhiteBox, Method="Комбинаторное покрытие (Метод 5)", Input="2 3 4 +", Path="A-EMPTY-B-C-D-E-F-G-E-F-G-E-F-H-K(Да)-L-M(+)-N-U-E-Z1(стек>1)", Expected="ERROR: Слишком много операндов" }
+};
 
     public static List<TestResult> RunAll()
     {
