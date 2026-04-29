@@ -1,6 +1,7 @@
 package calculator
 
 import (
+	"errors"
 	"fmt"
 	"shared/stack"
 	"strconv"
@@ -14,7 +15,16 @@ func NewPostfixCalculator() *PostfixCalculator {
 }
 
 func (c *PostfixCalculator) Calculate(postfixExpr string) (int, error) {
+	if strings.TrimSpace(postfixExpr) == "" {
+		return 0, errors.New("пустое выражение")
+	}
+
 	tokens := strings.Fields(postfixExpr)
+
+	if len(tokens) == 0 {
+		return 0, errors.New("пустое выражение")
+	}
+
 	valStack := stack.New[int]()
 
 	for _, token := range tokens {
