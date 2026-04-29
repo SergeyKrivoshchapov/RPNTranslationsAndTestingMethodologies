@@ -87,6 +87,7 @@ func (p *Parser) ToPoliz(tokens []lexer.Token) ([]string, error) {
 					}
 				}
 			}
+			opStack.Push(op)
 		}
 	}
 
