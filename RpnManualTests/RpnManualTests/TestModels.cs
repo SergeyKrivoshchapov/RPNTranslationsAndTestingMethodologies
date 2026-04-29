@@ -9,11 +9,11 @@ public enum TestType
 public sealed class TestCase
 {
     public string Id { get; init; } = "";
-    public string Task { get; init; } = "";    // "Задание 1" / "Задание 2"
-    public TestType BoxType { get; init; }     // BlackBox / WhiteBox
-    public string Method { get; init; } = "";  // "Классы эквивалентности", "Покрытие путей" и т.д.
+    public string Task { get; init; } = "";
+    public TestType BoxType { get; init; }
+    public string Method { get; init; } = "";
     public string Input { get; init; } = "";
-    public string Path { get; init; } = "";    // Путь по блок-схеме (для белого ящика)
+    public string Path { get; init; } = "";
     public string Expected { get; init; } = "";
 }
 
